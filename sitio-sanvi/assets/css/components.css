@@ -45,7 +45,8 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--c-teal-500);
+  /* teal-500 da 3.44:1 sobre fondos claros (falla AA); teal-900 pasa amplio */
+  color: var(--c-teal-900);
 }
 
 .lede {
@@ -81,23 +82,28 @@
 .btn:hover { transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
 
+/* Texto en tinta oscura, no blanco: blanco sobre coral-500 da 2.8:1 (falla
+   WCAG AA 4.5:1). --c-ink sobre coral-500 da ~5.3:1. Verificado con Lighthouse
+   (auditoria color-contrast) en la QA de la Tarea 9. */
 .btn--primary {
   background: var(--c-coral-500);
   border-color: var(--c-coral-500);
-  color: #FFFFFF;
+  color: var(--c-ink);
   box-shadow: var(--shadow-sm);
 }
 
 .btn--primary:hover {
   background: var(--c-coral-600);
   border-color: var(--c-coral-600);
-  color: #FFFFFF;
+  color: var(--c-ink);
 }
 
 .btn--ghost {
   background: transparent;
+  /* Borde: teal-500 pasa 3:1 (contraste no-textual). Texto: teal-500 solo da
+     3.44:1 y falla el 4.5:1 de texto normal; teal-900 pasa amplio. */
   border-color: var(--c-teal-500);
-  color: var(--c-teal-500);
+  color: var(--c-teal-900);
 }
 
 .btn--ghost:hover {
@@ -317,7 +323,8 @@
 
 .site-nav__list a[aria-current="page"] {
   background: var(--c-teal-050);
-  color: var(--c-teal-500);
+  /* teal-500 sobre teal-050 falla 4.5:1; teal-900 pasa amplio */
+  color: var(--c-teal-900);
 }
 
 .site-nav__cta { width: 100%; }
@@ -349,7 +356,8 @@
 
   .site-nav__list a[aria-current="page"] {
     background: none;
-    color: var(--c-teal-500);
+    /* teal-500 sobre el header claro falla 4.5:1; teal-900 pasa amplio */
+    color: var(--c-teal-900);
   }
 
   .site-nav__list a[aria-current="page"]::after {
@@ -830,6 +838,16 @@ select.field__control {
   font-style: normal;
 }
 
+/* El telefono va incrustado en una linea de texto junto a #BFD6DE: el
+   contraste enlace/texto-alrededor es solo 1.51:1 (falla WCAG 1.4.1,
+   detectado por Lighthouse "link-in-text-block"). El subrayado es la senal
+   no cromatica que exige el criterio, sin depender del color. */
+.footer__nap a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
 .footer__note {
   display: grid;
   gap: var(--sp-3);
@@ -858,6 +876,8 @@ select.field__control {
    El footer gana relleno inferior extra en movil para que el FAB no tape la
    ultima linea del aviso legal.
    -------------------------------------------------------------------------- */
+/* Mismo problema que .btn--primary: blanco sobre coral-500 da 2.8:1 (falla
+   texto 4.5:1 y tambien el 3:1 de icono/UI no textual). --c-ink pasa ambos. */
 .wa-fab {
   position: fixed;
   right: var(--sp-5);
@@ -870,7 +890,7 @@ select.field__control {
   width: 56px;
   height: 56px;
   background: var(--c-coral-500);
-  color: #FFFFFF;
+  color: var(--c-ink);
   border-radius: var(--r-pill);
   box-shadow: 0 6px 20px rgba(11, 42, 58, 0.22);
   text-decoration: none;
@@ -879,7 +899,7 @@ select.field__control {
 
 .wa-fab:hover {
   background: var(--c-coral-600);
-  color: #FFFFFF;
+  color: var(--c-ink);
   transform: translateY(-2px);
 }
 

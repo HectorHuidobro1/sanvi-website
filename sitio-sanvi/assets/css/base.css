@@ -172,7 +172,10 @@ strong { font-weight: 600; }
    4. Enlaces
    -------------------------------------------------------------------------- */
 a {
-  color: var(--c-teal-500);
+  /* teal-500 da 3.44:1 sobre --c-surface/--c-teal-050 y falla el 4.5:1 de
+     texto normal (WCAG AA, verificado con Lighthouse en la Tarea 9);
+     teal-900 pasa amplio y sigue siendo turquesa de marca. */
+  color: var(--c-teal-900);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
   transition: color 0.15s ease;
