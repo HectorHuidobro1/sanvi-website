@@ -2785,7 +2785,7 @@ EOF
 
 **Interfaces:**
 - Consumes: tokens y utilidades de `base.css`; clases `.section .section--surface .section--tint .section__head .eyebrow .lede .stack .btn .btn--primary .btn--ghost .btn--block .badge-row .badge .card .card__icon .card__title .card__price .price-table .price-table__name .price-table__desc .price-table__price .steps .step .step__num .checklist .checklist--no .callout .callout--warn .faq .faq__item` de `components.css` (Tarea 2); `assets/img/hero-cuidado.svg` y `assets/img/cobertura-calama.svg` (Tarea 2).
-- Produces: los `id` de sección `#precios #que-incluye #servicios #como-funciona #cobertura #equipo #opiniones #faq #agendar` (destinos de anclas internas) y las clases de página `.page-hero .hero .hero__media .hero__price .cards-grid .split .coverage .commitments .cta-band`, reutilizadas por las Tareas 4–6.
+- Produces: los `id` de sección `#precios #que-incluye #servicios #como-funciona #cobertura #equipo #opiniones #faq #agendar` (destinos de anclas internas) y las clases de página `.page-hero .hero .hero__media .hero__price .cards-grid .split .coverage__media .coverage__list .commitments .cta-band`, reutilizadas por las Tareas 4–6.
 
 ---
 
