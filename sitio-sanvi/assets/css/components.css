@@ -28,6 +28,11 @@
    un token ni una utilidad generica, sino el ritmo vertical del sitio.
    -------------------------------------------------------------------------- */
 .section { padding-block: var(--section-y); }
+/* El padding superior e inferior no colapsan entre hermanos (a diferencia del
+   margin), asi que dos <section> seguidas sumaban 2x --section-y de espacio
+   en blanco. Se reduce el superior de la segunda a la mitad para conservar
+   aire despues del cambio de fondo sin duplicar el espaciado. */
+.section + .section { padding-top: calc(var(--section-y) / 2); }
 .section--surface { background: var(--c-surface); }
 .section--tint { background: var(--c-teal-050); }
 
