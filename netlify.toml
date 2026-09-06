@@ -1,8 +1,10 @@
 # Configuracion de despliegue de Sanvi en Netlify.
-# El sitio es estatico: no hay comando de build, solo publicacion de esta carpeta.
-
+# El sitio es estatico: no hay comando de build, solo publicacion de la carpeta
+# sitio-sanvi/. Netlify solo lee netlify.toml desde la raiz del repositorio,
+# por eso este archivo vive aqui y no dentro de sitio-sanvi/.
 [build]
-  publish = "."
+  base = "sitio-sanvi"
+  publish = "sitio-sanvi"
 
 # Las URLs del sitio son .html reales. Desactivar pretty_urls evita que Netlify
 # redirija /servicios.html a /servicios y rompa los canonicals y el sitemap.
@@ -17,17 +19,17 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), camera=(), microphone=(), payment=(), interest-cohort=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self' https://wa.me; frame-ancestors 'none'; base-uri 'self'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self' https://wa.me; frame-ancestors 'none'; base-uri 'self'"
 
 [[headers]]
   for = "/assets/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=600, must-revalidate"
 
 [[headers]]
   for = "/assets/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=600, must-revalidate"
 
 [[headers]]
   for = "/assets/img/*"

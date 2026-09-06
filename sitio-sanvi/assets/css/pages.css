@@ -103,3 +103,12 @@
 .hours-table th { font-weight: 600; }
 .hours-table td { text-align: right; color: var(--c-muted); }
 .hours-table tr:last-child th, .hours-table tr:last-child td { border-bottom: 0; }
+
+/* ---------- Utilidades puntuales (evitan style="" inline) ---------- */
+.u-mt-1 { margin-top: var(--sp-5); }   /* 1rem */
+.u-mt-2 { margin-top: var(--sp-6); }   /* 1.5rem */
+.u-mt-3 { margin-top: var(--sp-7); }   /* 2rem */
+.u-mt-4 { margin-top: 2.5rem; }        /* sin token de escala cercano entre --sp-7 y --sp-8 */
+.u-text-inverse { color: #fff; }
+.u-text-muted { color: var(--c-muted); }
+.u-list-indent { padding-left: 1.2rem; }

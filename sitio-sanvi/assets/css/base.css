@@ -139,7 +139,6 @@ body {
   color: var(--c-ink);
   background-color: var(--c-teal-050);
   background-image: var(--grad-soft);
-  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -178,10 +177,12 @@ a {
   color: var(--c-teal-900);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
-  transition: color 0.15s ease;
+  transition: text-decoration-thickness 0.15s ease;
 }
 
-a:hover { color: var(--c-teal-900); }
+/* El color no cambia en hover (teal-900 ya es el que pasa WCAG AA, ver
+   arriba); el afordance de hover es un subrayado mas grueso en su lugar. */
+a:hover { text-decoration-thickness: 2px; }
 
 /* --------------------------------------------------------------------------
    5. Foco visible — anillo turquesa
@@ -211,7 +212,7 @@ a:hover { color: var(--c-teal-900); }
 }
 
 .skip-link {
-  position: absolute;
+  position: fixed;
   left: var(--sp-5);
   top: var(--sp-5);
   z-index: 999;

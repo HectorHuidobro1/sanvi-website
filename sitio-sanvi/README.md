@@ -11,7 +11,9 @@ HTML/CSS/JS puro. Sin framework, sin build step, sin dependencias de runtime.
 - `assets/css/pages.css` — secciones concretas de cada página
 - `assets/js/site.js` — nav móvil, sombra del header, formulario → WhatsApp (todo mejora progresiva)
 - `assets/img/` — SVG propios y los tres PNG generados
-- `sitemap.xml`, `robots.txt`, `netlify.toml`, `_headers`
+- `sitemap.xml`, `robots.txt`, `_headers`
+- `netlify.toml` vive en la **raíz del proyecto** (un nivel arriba de esta carpeta),
+  no aquí: Netlify solo lee ese archivo desde la raíz del repositorio.
 
 Los verificadores viven en `../tools/` y **no** se despliegan.
 
@@ -30,10 +32,6 @@ Abrir http://localhost:8080/index.html
     python "$HOME/.claude/plugins/cache/agricidaniel-claude-seo/claude-seo/2.2.5/hooks/validate-schema.py" sitio-sanvi/index.html < /dev/null
 
 Los cuatro deben terminar sin errores.
-
-`tools/check_perf.py` se añade en una tarea posterior del proyecto (QA final de
-rendimiento y accesibilidad). Si todavía no existe en este checkout, omitir esa
-línea y verificar con los otros tres.
 
 ## Regenerar los rasters de marca
 
@@ -67,10 +65,21 @@ las dos o los verificadores quedarán comprobando el dominio viejo.)
 
 ## Desplegar
 
-Netlify o Cloudflare Pages, publicando esta carpeta tal cual. Sin comando de build.
-En Netlify, `netlify.toml` ya desactiva `pretty_urls` (indispensable: el sitio usa
-URLs `.html` reales) y aplica las cabeceras de seguridad. En Cloudflare Pages las
-cabeceras vienen de `_headers`.
+Netlify o Cloudflare Pages, publicando esta carpeta (`sitio-sanvi/`) tal cual. Sin
+comando de build.
+
+**Netlify:** lee `netlify.toml` desde la **raíz del repositorio** (un nivel arriba
+de esta carpeta), no desde aquí — Netlify no procesa `netlify.toml` si está dentro
+de la carpeta publicada. Ese archivo raíz ya trae `base = "sitio-sanvi"` y
+`publish = "sitio-sanvi"`, desactiva `pretty_urls` (indispensable: el sitio usa
+URLs `.html` reales) y aplica las cabeceras de seguridad.
+
+**Cloudflare Pages:** no lee `netlify.toml` automáticamente. Las cabeceras de
+seguridad vienen de `_headers`, que sí se despliega porque vive dentro de
+`sitio-sanvi/` — pero **solo funciona si en el dashboard de Cloudflare Pages el
+"Build output directory" está configurado como `sitio-sanvi`**. Si se deja vacío
+o en `/`, Cloudflare no encuentra `_headers` y las cabeceras de seguridad no se
+aplican.
 
 ## Pendientes post-lanzamiento (por orden de impacto)
 
@@ -82,6 +91,11 @@ cabeceras vienen de `_headers`.
    `"hasMap": "https://www.google.com/maps/place/?q=place_id:PLACE_ID_REAL"`.
    Hasta tener el Place ID real, no añadir nada: publicar un placeholder viola las
    políticas de datos estructurados.
+   **Importante sobre el nombre de la ficha:** debe ser exactamente "Sanvi", nunca
+   un nombre con keyword-stuffing tipo "Inyección a Domicilio Calama". Es la
+   práctica de local SEO más riesgosa que detectó la auditoría de la competencia
+   (ver `draska-audit/`) y que este proyecto evitó a propósito; no copiar el
+   `alternateName` del JSON-LD al nombre de la ficha de GBP para "sumar keywords".
 3. **Número de registro sanitario.** Cuando esté disponible, publicarlo visible en
    `nosotros.html#equipo` y `index.html#equipo`, y añadir al `@graph` un nodo `Person`
    con `hasCredential` (`EducationalOccupationalCredential`, `credentialCategory: "license"`,
