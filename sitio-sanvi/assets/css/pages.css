@@ -1,1 +1,105 @@
-/* pages.css — secciones especificas de cada pagina. Se escribe en la Tarea 3. */
+/* ==========================================================================
+   Sanvi - pages.css
+   Secciones concretas de pagina. No redefine tokens ni componentes.
+   ========================================================================== */
+
+/* ---------- Hero de la home ---------- */
+.hero { padding-block: var(--sp-8) var(--section-y); background: var(--grad-soft); }
+.hero__grid { display: grid; gap: var(--sp-8); align-items: center; }
+.hero h1 { margin-bottom: var(--sp-4); }
+.hero .lede { margin-bottom: var(--sp-5); }
+.hero__badges { margin-bottom: var(--sp-5); }
+.hero__price {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-2) var(--sp-3);
+  padding: var(--sp-4) var(--sp-5); margin-bottom: var(--sp-5);
+  background: var(--c-surface); border: 1px solid var(--c-line);
+  border-radius: var(--r-md); box-shadow: var(--shadow-sm);
+}
+.hero__price b { font-family: var(--font-display); font-size: var(--fs-700); color: var(--c-teal-900); }
+.hero__price span { color: var(--c-muted); font-size: var(--fs-400); }
+.hero__actions { display: grid; gap: var(--sp-3); }
+.hero__media { order: -1; }
+.hero__media img { width: 100%; max-width: 520px; margin-inline: auto; }
+@media (min-width: 640px) { .hero__actions { grid-auto-flow: column; justify-content: start; } }
+@media (min-width: 900px) {
+  .hero__grid { grid-template-columns: 1.05fr .95fr; gap: var(--sp-9); }
+  .hero__media { order: 0; }
+}
+
+/* ---------- Hero de paginas internas ---------- */
+.page-hero { padding-block: var(--sp-8) var(--sp-7); background: var(--grad-soft); }
+.page-hero h1 { margin-bottom: var(--sp-4); }
+
+/* ---------- Rejilla de tarjetas ---------- */
+.cards-grid { display: grid; gap: var(--sp-5); }
+@media (min-width: 640px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1200px) { .cards-grid--4 { grid-template-columns: repeat(4, 1fr); } }
+
+/* ---------- Bloque partido ---------- */
+.split { display: grid; gap: var(--sp-7); align-items: start; }
+@media (min-width: 900px) { .split { grid-template-columns: repeat(2, 1fr); gap: var(--sp-8); } }
+
+/* ---------- Cobertura ---------- */
+.coverage__media img { width: 100%; border-radius: var(--r-lg); box-shadow: var(--shadow-sm); }
+.coverage__list { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; padding: 0; margin-top: var(--sp-4); }
+.coverage__list li {
+  padding: .4rem .85rem; background: var(--c-surface);
+  border: 1px solid var(--c-line); border-radius: var(--r-pill); font-size: var(--fs-300);
+}
+
+/* ---------- Compromisos ---------- */
+.commitments { display: grid; gap: var(--sp-5); list-style: none; padding: 0; }
+.commitments li {
+  padding: var(--sp-5); background: var(--c-surface);
+  border: 1px solid var(--c-line); border-left: 5px solid var(--c-teal-500);
+  border-radius: var(--r-md);
+}
+.commitments h3 { font-size: var(--fs-600); margin-bottom: var(--sp-2); }
+.commitments p { color: var(--c-muted); font-size: var(--fs-400); }
+@media (min-width: 900px) { .commitments { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- Banda de CTA final ---------- */
+.cta-band { background: var(--grad-teal); color: #fff; }
+.cta-band h2, .cta-band p { color: #fff; }
+.cta-band .lede { color: rgba(255, 255, 255, .92); }
+.cta-band__inner { display: grid; gap: var(--sp-5); align-items: center; }
+.cta-band__actions { display: grid; gap: var(--sp-3); }
+@media (min-width: 640px) { .cta-band__actions { grid-auto-flow: column; justify-content: start; } }
+@media (min-width: 900px) { .cta-band__inner { grid-template-columns: 1.4fr 1fr; } }
+
+/* ---------- Secciones de servicio (servicios.html) ---------- */
+.anchor-nav { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; padding: 0; margin-top: var(--sp-5); }
+.anchor-nav a {
+  display: inline-block; padding: .5rem 1rem;
+  background: var(--c-surface); border: 1px solid var(--c-line); border-radius: var(--r-pill);
+  font-size: var(--fs-300); font-weight: 500; text-decoration: none; color: var(--c-ink);
+}
+.anchor-nav a:hover { background: var(--c-teal-050); color: var(--c-teal-900); }
+
+.service { padding-block: var(--sp-8); border-top: 1px solid var(--c-line); }
+.service:first-of-type { border-top: 0; }
+.service__head { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-6); }
+.service__price {
+  display: inline-flex; align-items: baseline; gap: var(--sp-2);
+  padding: .5rem 1.1rem; background: var(--c-teal-050);
+  border-radius: var(--r-pill); width: max-content;
+}
+.service__price b { font-family: var(--font-display); font-size: var(--fs-700); color: var(--c-teal-900); }
+.service__price span { font-size: var(--fs-300); color: var(--c-muted); }
+.service__meta { display: flex; flex-wrap: wrap; gap: var(--sp-4); color: var(--c-muted); font-size: var(--fs-400); }
+.service__body { display: grid; gap: var(--sp-6); }
+.service__cta { margin-top: var(--sp-6); }
+@media (min-width: 900px) { .service__body { grid-template-columns: repeat(2, 1fr); gap: var(--sp-8); } }
+
+/* ---------- Contacto ---------- */
+.contact-grid { display: grid; gap: var(--sp-7); align-items: start; }
+@media (min-width: 900px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: var(--sp-8); } }
+.contact-card {
+  padding: var(--sp-6); background: var(--c-surface);
+  border: 1px solid var(--c-line); border-radius: var(--r-lg); box-shadow: var(--shadow-sm);
+}
+.contact-card h2 { font-size: var(--fs-700); margin-bottom: var(--sp-3); }
+.hours-table th, .hours-table td { padding: var(--sp-3) 0; border-bottom: 1px solid var(--c-line); text-align: left; }
+.hours-table th { font-weight: 600; }
+.hours-table td { text-align: right; color: var(--c-muted); }
+.hours-table tr:last-child th, .hours-table tr:last-child td { border-bottom: 0; }
