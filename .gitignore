@@ -1,0 +1,14 @@
+# Estado interno de las skills (no forma parte del entregable)
+.superpowers/
+
+# Python
+__pycache__/
+*.pyc
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Dependencias que este proyecto NO usa, pero que herramientas externas
+# podrian generar si alguien corre un tooling de node en la carpeta
+node_modules/
