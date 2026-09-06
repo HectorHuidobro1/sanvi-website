@@ -175,6 +175,16 @@
   background: var(--c-teal-400);
 }
 
+/* Badges con icono inline: el icono sustituye al punto decorativo. */
+.badge--icon::before { content: none; }
+
+.badge__icon {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  color: var(--c-teal-500);
+}
+
 /* --------------------------------------------------------------------------
    4. Header y navegacion
    Contrato con site.js: el boton .nav-toggle alterna la clase `nav-open`
@@ -413,6 +423,8 @@
   font-weight: 700;
   letter-spacing: 0.02em;
 }
+
+.card__icon svg { display: block; }
 
 .card__title { font-size: var(--fs-600); }
 

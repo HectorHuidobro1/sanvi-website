@@ -79,6 +79,9 @@
 .service { padding-block: var(--sp-8); border-top: 1px solid var(--c-line); }
 .service:first-of-type { border-top: 0; }
 .service__head { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-6); }
+.service__head-top { display: flex; align-items: center; gap: var(--sp-4); }
+.service__head-top .card__icon { flex: none; }
+.service__head-top h2 { margin: 0; }
 .service__price {
   display: inline-flex; align-items: baseline; gap: var(--sp-2);
   padding: .5rem 1.1rem; background: var(--c-teal-050);
