@@ -26,15 +26,97 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/pages.css">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 </head>
 <body>
 <a class="skip-link" href="#main">Saltar al contenido</a>
-<!-- HEADER_PLACEHOLDER -->
+<header class="site-header" id="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html">
+      <svg class="brand__mark" viewBox="0 0 64 64" width="38" height="38" aria-hidden="true" focusable="false">
+        <defs><linearGradient id="brandHead" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#0F9B8E"/><stop offset="1" stop-color="#2DD4BF"/>
+        </linearGradient></defs>
+        <rect width="64" height="64" rx="16" fill="url(#brandHead)"/>
+        <path d="M26 16h12v10h10v12H38v10H26V38H16V26h10z" fill="#fff"/>
+        <circle cx="47" cy="17" r="6" fill="#FF6B57"/>
+      </svg>
+      <span class="brand__name">Sanvi</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+      <span class="sr-only">Abrir menú de navegación</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+      <ul class="site-nav__list">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios y precios</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html" aria-current="page">Contacto</a></li>
+      </ul>
+      <a class="btn btn--primary btn--sm site-nav__cta" href="https://wa.me/56978833741?text=Hola%20Sanvi%2C%20quiero%20agendar%20una%20atenci%C3%B3n%20de%20enfermer%C3%ADa%20a%20domicilio%20en%20Calama.">Agendar por WhatsApp</a>
+    </nav>
+  </div>
+</header>
 <main id="main">
   <h1>Contacto y agendamiento</h1>
   <p>Contenido pendiente.</p>
 </main>
-<!-- FOOTER_PLACEHOLDER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__col">
+        <a class="brand" href="index.html" style="color:#fff">
+          <svg class="brand__mark" viewBox="0 0 64 64" width="38" height="38" aria-hidden="true" focusable="false">
+            <defs><linearGradient id="brandFoot" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0F9B8E"/><stop offset="1" stop-color="#2DD4BF"/>
+            </linearGradient></defs>
+            <rect width="64" height="64" rx="16" fill="url(#brandFoot)"/>
+            <path d="M26 16h12v10h10v12H38v10H26V38H16V26h10z" fill="#fff"/>
+            <circle cx="47" cy="17" r="6" fill="#FF6B57"/>
+          </svg>
+          <span class="brand__name">Sanvi</span>
+        </a>
+        <address class="footer__nap" style="margin-top:1rem">
+          <span>Enfermería e inyecciones a domicilio</span>
+          <span>Calama, Región de Antofagasta, Chile</span>
+          <span>WhatsApp y teléfono: <a href="tel:+56978833741">+56 9 7883 3741</a></span>
+          <span>Horario: todos los días, de 8:00 a 21:00, con hora agendada</span>
+        </address>
+      </div>
+      <div class="footer__col">
+        <h2>Páginas</h2>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios y precios</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2>Servicios en Calama</h2>
+        <ul>
+          <li><a href="servicios.html#inyeccion-intramuscular">Inyección intramuscular · $10.000</a></li>
+          <li><a href="servicios.html#inyeccion-intravenosa">Inyección intravenosa · $17.000</a></li>
+          <li><a href="servicios.html#curacion-simple">Curación simple · $15.000</a></li>
+          <li><a href="servicios.html#curacion-compleja">Curación compleja · $33.000</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__note">
+      <p>Sanvi no vende medicamentos ni reemplaza la indicación de tu médico tratante. Necesitas receta médica vigente para cualquier administración de fármacos inyectables.</p>
+      <p>Ante una emergencia vital, llama al 131 (SAMU). Este sitio no atiende urgencias.</p>
+      <p>© 2026 Sanvi · Calama, Chile.</p>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/56978833741?text=Hola%20Sanvi%2C%20quiero%20agendar%20una%20atenci%C3%B3n%20de%20enfermer%C3%ADa%20a%20domicilio%20en%20Calama." aria-label="Agendar por WhatsApp al +56 9 7883 3741">
+  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+    <path fill="currentColor" d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.94.53 3.75 1.44 5.3L2 22l4.99-1.6a9.8 9.8 0 0 0 5.05 1.38h.01c5.43 0 9.84-4.4 9.84-9.84C21.89 6.4 17.48 2 12.04 2zm5.72 13.9c-.24.68-1.4 1.3-1.94 1.34-.5.05-.98.23-3.3-.7-2.79-1.1-4.56-3.94-4.7-4.13-.13-.19-1.12-1.5-1.12-2.85 0-1.36.71-2.02.96-2.3.25-.27.55-.34.73-.34h.53c.17 0 .4-.06.62.48.24.57.8 1.98.87 2.12.07.14.12.31.02.5-.1.19-.15.31-.29.48-.15.16-.31.37-.44.5-.15.14-.3.3-.13.58.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.3 2.35 1.45.29.14.46.12.63-.07.17-.2.72-.85.92-1.14.19-.29.38-.24.64-.14.26.09 1.66.78 1.95.93.29.14.48.21.55.33.07.12.07.69-.17 1.36z"/>
+  </svg>
+  <span class="wa-fab__text">Agendar por WhatsApp</span>
+</a>
 <script src="assets/js/site.js" defer></script>
 </body>
 </html>

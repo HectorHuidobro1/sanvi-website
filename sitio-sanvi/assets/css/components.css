@@ -1,1 +1,905 @@
-/* components.css — header, footer, botones y cards. Se escribe en la Tarea 2. */
+/* ==========================================================================
+   components.css — Sanvi
+   Componentes compartidos por las 4 paginas: layout de seccion, botones,
+   badges, header/nav, tarjetas, tabla de precios, pasos, checklists,
+   avisos, FAQ, formulario, footer y boton flotante de WhatsApp.
+   Se carga DESPUES de base.css y ANTES de pages.css.
+   Regla de oro: aqui no se define ninguna seccion concreta de una pagina
+   (eso vive en pages.css) ni se redefine ningun token de base.css.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. Los cuatro colores que base.css no tiene
+   base.css cubre la paleta de marca (turquesa, coral, superficie, tinta),
+   pero no un fondo oscuro para el footer, ni un tono de advertencia, ni un
+   fondo suave de coral. Se declaran aqui, junto a los componentes que son
+   los unicos que los usan, en lugar de contaminar los tokens de base.
+   -------------------------------------------------------------------------- */
+:root {
+  --c-ink-950: #08202B;    /* fondo del footer */
+  --c-amber-050: #FFF6E6;  /* fondo de .callout--warn */
+  --c-amber-500: #B26B00;  /* borde y titulo de .callout--warn (AA sobre --c-amber-050) */
+  --c-coral-050: #FFEDE8;  /* fondo del icono de .checklist--no */
+}
+
+/* --------------------------------------------------------------------------
+   1. Layout de seccion
+   Consumido por las 4 paginas (Tareas 3–6). No esta en base.css porque no es
+   un token ni una utilidad generica, sino el ritmo vertical del sitio.
+   -------------------------------------------------------------------------- */
+.section { padding-block: var(--section-y); }
+.section--surface { background: var(--c-surface); }
+.section--tint { background: var(--c-teal-050); }
+
+.section__head {
+  max-width: 62ch;
+  margin-bottom: var(--sp-7);
+}
+
+.section__head h2 { margin-bottom: var(--sp-4); }
+
+.eyebrow {
+  margin-bottom: var(--sp-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-200);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-teal-500);
+}
+
+.lede {
+  font-size: var(--fs-500);
+  color: var(--c-muted);
+}
+
+/* Apila hijos con un ritmo unico. Se usa tambien en el <form> de contacto. */
+.stack > * + * { margin-top: var(--sp-5); }
+
+/* --------------------------------------------------------------------------
+   2. Botones
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  min-height: 48px;
+  padding: var(--sp-4) var(--sp-6);
+  font-family: var(--font-display);
+  font-size: var(--fs-300);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: var(--r-pill);
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+              color 0.15s ease, transform 0.15s ease;
+}
+
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn--primary {
+  background: var(--c-coral-500);
+  border-color: var(--c-coral-500);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--primary:hover {
+  background: var(--c-coral-600);
+  border-color: var(--c-coral-600);
+  color: #FFFFFF;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--c-teal-500);
+  color: var(--c-teal-500);
+}
+
+.btn--ghost:hover {
+  background: var(--c-teal-050);
+  border-color: var(--c-teal-900);
+  color: var(--c-teal-900);
+}
+
+.btn--sm {
+  min-height: 40px;
+  padding: var(--sp-3) var(--sp-5);
+  font-size: var(--fs-200);
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+/* Unica regla que cruza a una clase de pages.css, y a proposito: dentro de
+   .cta-band el fondo es --grad-teal, asi que un boton fantasma turquesa sobre
+   turquesa quedaria ilegible. Con .cta-band .btn--ghost (0,2,0) gana sin
+   depender del orden de carga de las hojas. */
+.cta-band .btn--ghost {
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #FFFFFF;
+}
+
+.cta-band .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   3. Badges
+   -------------------------------------------------------------------------- */
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  list-style: none;
+  padding: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-300);
+  color: var(--c-muted);
+}
+
+.badge::before {
+  content: "";
+  flex: none;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--c-teal-400);
+}
+
+/* --------------------------------------------------------------------------
+   4. Header y navegacion
+   Contrato con site.js: el boton .nav-toggle alterna la clase `nav-open`
+   sobre #site-nav (NO sobre el header) y mantiene su propio aria-expanded,
+   del que cuelga la animacion hamburguesa -> X. El header recibe `is-stuck`
+   al hacer scroll.
+   Sin JavaScript el menu movil no se abre; la navegacion completa sigue
+   disponible en el footer de las 4 paginas, que no depende de JS.
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.site-header.is-stuck {
+  border-bottom-color: var(--c-line);
+  box-shadow: var(--shadow-sm);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  min-height: 72px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--c-ink);
+  text-decoration: none;
+}
+
+.brand:hover { color: var(--c-teal-500); }
+
+.brand__mark {
+  flex: none;
+  border-radius: var(--r-md);
+}
+
+.brand__name {
+  font-size: var(--fs-600);
+  letter-spacing: -0.02em;
+}
+
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-md);
+  color: var(--c-ink);
+}
+
+.nav-toggle:hover { border-color: var(--c-teal-400); }
+
+/* Hamburguesa de tres lineas hecha con la barra central y sus dos
+   pseudo-elementos. Sin SVG y sin markup extra. */
+.nav-toggle__bars {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: background-color 0.15s ease;
+}
+
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.18s ease, top 0.18s ease;
+}
+
+.nav-toggle__bars::before { top: -7px; }
+.nav-toggle__bars::after { top: 7px; }
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars { background: transparent; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars::before { top: 0; transform: rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars::after { top: 0; transform: rotate(-135deg); }
+
+/* Menu movil: panel desplegable bajo el header. Cerrado usa
+   visibility:hidden, asi que sus enlaces salen del orden de tabulacion. */
+.site-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: grid;
+  gap: var(--sp-4);
+  padding: var(--sp-5) var(--sp-5) var(--sp-6);
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-line);
+  box-shadow: var(--shadow-sm);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+
+.site-nav.nav-open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.site-nav__list {
+  display: grid;
+  gap: var(--sp-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-nav__list a {
+  position: relative;
+  display: block;
+  padding: var(--sp-3) var(--sp-4);
+  font-family: var(--font-display);
+  font-size: var(--fs-300);
+  font-weight: 600;
+  color: var(--c-ink);
+  text-decoration: none;
+  border-radius: var(--r-md);
+}
+
+.site-nav__list a:hover {
+  background: var(--c-teal-050);
+  color: var(--c-teal-900);
+}
+
+.site-nav__list a[aria-current="page"] {
+  background: var(--c-teal-050);
+  color: var(--c-teal-500);
+}
+
+.site-nav__cta { width: 100%; }
+
+@media (min-width: 900px) {
+  .nav-toggle { display: none; }
+
+  .site-nav {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: var(--sp-6);
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .site-nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-5);
+  }
+
+  .site-nav__list a { padding: var(--sp-2) var(--sp-3); }
+
+  .site-nav__list a[aria-current="page"] {
+    background: none;
+    color: var(--c-teal-500);
+  }
+
+  .site-nav__list a[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    left: var(--sp-3);
+    right: var(--sp-3);
+    bottom: -6px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--c-teal-400);
+  }
+
+  .site-nav__cta { width: auto; }
+}
+
+/* --------------------------------------------------------------------------
+   5. Tarjetas
+   -------------------------------------------------------------------------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-6);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(11, 42, 58, 0.06), 0 14px 30px rgba(11, 42, 58, 0.10);
+}
+
+.card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-md);
+  background: var(--grad-teal);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: var(--fs-300);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.card__title { font-size: var(--fs-600); }
+
+.card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card__title a:hover {
+  color: var(--c-teal-500);
+  text-decoration: underline;
+}
+
+/* El gap del flex ya aporta la separacion: se neutraliza el `p + p` de
+   base.css. La regla del precio se escribe con el elemento incluido para
+   ganar en especificidad a `.card > p`. */
+.card > p {
+  margin: 0;
+  font-size: var(--fs-300);
+  color: var(--c-muted);
+}
+
+.card > p.card__price {
+  margin-top: auto;
+  padding-top: var(--sp-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-600);
+  font-weight: 700;
+  color: var(--c-teal-900);
+}
+
+/* --------------------------------------------------------------------------
+   6. Tabla de precios
+   Tabla real a partir de 48em; tarjetas apiladas por debajo, usando el
+   data-label de cada <td> como etiqueta via ::before.
+   -------------------------------------------------------------------------- */
+.price-table {
+  width: 100%;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-lg);
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.price-table caption {
+  caption-side: bottom;
+  padding-top: var(--sp-4);
+  font-size: var(--fs-300);
+  color: var(--c-muted);
+  text-align: left;
+}
+
+.price-table th,
+.price-table td {
+  padding: var(--sp-4) var(--sp-5);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.price-table thead th {
+  background: var(--c-teal-050);
+  font-family: var(--font-display);
+  font-size: var(--fs-200);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-teal-900);
+}
+
+.price-table tbody tr:last-child td { border-bottom: 0; }
+
+.price-table__name { font-weight: 600; }
+
+.price-table__name a {
+  color: var(--c-ink);
+  text-decoration: none;
+}
+
+.price-table__name a:hover {
+  color: var(--c-teal-500);
+  text-decoration: underline;
+}
+
+.price-table__desc {
+  font-size: var(--fs-300);
+  color: var(--c-muted);
+}
+
+.price-table__price {
+  font-family: var(--font-display);
+  font-size: var(--fs-500);
+  font-weight: 700;
+  color: var(--c-teal-900);
+  white-space: nowrap;
+}
+
+@media (max-width: 47.99em) {
+  .price-table {
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .price-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .price-table tr {
+    display: grid;
+    gap: var(--sp-3);
+    padding: var(--sp-5);
+    margin-bottom: var(--sp-4);
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .price-table td {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+
+  .price-table td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: var(--sp-2);
+    font-size: var(--fs-100);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+  }
+
+  .price-table__name { font-family: var(--font-display); font-size: var(--fs-600); font-weight: 700; }
+  .price-table__price { font-size: var(--fs-700); }
+}
+
+/* --------------------------------------------------------------------------
+   7. Pasos numerados
+   -------------------------------------------------------------------------- */
+.steps {
+  display: grid;
+  gap: var(--sp-5);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-5);
+  padding: var(--sp-6);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--grad-teal);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: var(--fs-500);
+  font-weight: 700;
+}
+
+.step h3 {
+  margin-bottom: var(--sp-2);
+  font-size: var(--fs-600);
+}
+
+.step p {
+  font-size: var(--fs-300);
+  color: var(--c-muted);
+}
+
+@media (min-width: 900px) {
+  .steps { grid-template-columns: repeat(3, 1fr); }
+  .step { flex-direction: column; }
+}
+
+/* --------------------------------------------------------------------------
+   8. Checklists
+   El icono va en el ::before como SVG en data-uri: sin peticiones extra y
+   sin markup adicional en el HTML.
+   -------------------------------------------------------------------------- */
+.checklist {
+  display: grid;
+  gap: var(--sp-4);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.checklist li {
+  position: relative;
+  padding-left: calc(var(--sp-7) + var(--sp-3));
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.12em;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: var(--c-teal-100);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F9B8E' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5 9.5 18 20 6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+}
+
+.checklist--no li::before {
+  background-color: var(--c-coral-050);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E5533F' stroke-width='3.2' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E");
+  background-size: 13px 13px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Avisos
+   -------------------------------------------------------------------------- */
+.callout {
+  padding: var(--sp-6);
+  background: var(--c-teal-050);
+  border: 1px solid var(--c-line);
+  border-left: 5px solid var(--c-teal-500);
+  border-radius: var(--r-md);
+}
+
+.callout h3 {
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-600);
+}
+
+.callout--warn {
+  background: var(--c-amber-050);
+  border-color: #F0DCB4;
+  border-left-color: var(--c-amber-500);
+}
+
+.callout--warn h3 { color: var(--c-amber-500); }
+
+/* --------------------------------------------------------------------------
+   10. FAQ
+   Acordeon nativo con <details>/<summary>. No lleva JavaScript a proposito:
+   abre y cierra sin scripts, funciona con teclado y es indexable.
+   -------------------------------------------------------------------------- */
+.faq {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.faq__item {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  padding: var(--sp-5) var(--sp-6);
+  list-style: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: var(--fs-500);
+  font-weight: 600;
+  text-align: left;
+  color: var(--c-ink);
+}
+
+.faq__item summary::-webkit-details-marker { display: none; }
+
+.faq__item summary:hover { color: var(--c-teal-500); }
+
+.faq__item summary::after {
+  content: "";
+  flex: none;
+  width: 11px;
+  height: 11px;
+  margin-top: -4px;
+  border-right: 2px solid var(--c-teal-500);
+  border-bottom: 2px solid var(--c-teal-500);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.faq__item[open] summary { color: var(--c-teal-900); }
+
+.faq__item[open] summary::after {
+  margin-top: 4px;
+  transform: rotate(-135deg);
+}
+
+.faq__item > div {
+  padding: 0 var(--sp-6) var(--sp-6);
+  color: var(--c-muted);
+}
+
+/* --------------------------------------------------------------------------
+   11. Formulario
+   -------------------------------------------------------------------------- */
+.field {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.field__label {
+  font-family: var(--font-display);
+  font-size: var(--fs-300);
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+.field__control {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--c-surface);
+  color: var(--c-ink);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-md);
+  font-size: var(--fs-400);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field__control:hover { border-color: var(--c-teal-300); }
+
+/* No se anula el outline: el anillo de foco de base.css sigue vigente y el
+   box-shadow solo lo refuerza. */
+.field__control:focus {
+  border-color: var(--c-teal-500);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.22);
+}
+
+.field__control::placeholder { color: var(--c-muted); opacity: 0.75; }
+
+textarea.field__control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+select.field__control {
+  appearance: none;
+  padding-right: var(--sp-8);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F9B8E' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--sp-5) center;
+  background-size: 14px 14px;
+}
+
+.field__hint {
+  font-size: var(--fs-200);
+  color: var(--c-muted);
+}
+
+.form-actions {
+  display: grid;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+
+/* --------------------------------------------------------------------------
+   12. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  padding-block: var(--sp-8);
+  background: var(--c-ink-950);
+  color: #BFD6DE;
+  font-size: var(--fs-300);
+}
+
+.site-footer a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--c-teal-300);
+  text-decoration: underline;
+}
+
+.footer__grid {
+  display: grid;
+  gap: var(--sp-7);
+}
+
+.footer__col h2 {
+  margin-bottom: var(--sp-4);
+  font-family: var(--font-display);
+  font-size: var(--fs-500);
+  color: #FFFFFF;
+}
+
+.footer__col ul {
+  display: grid;
+  gap: var(--sp-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__nap {
+  display: grid;
+  gap: var(--sp-2);
+  font-style: normal;
+}
+
+.footer__note {
+  display: grid;
+  gap: var(--sp-3);
+  margin-top: var(--sp-7);
+  padding-top: var(--sp-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: var(--fs-200);
+  color: #9FBCC6;
+}
+
+/* El gap ya separa los parrafos: se neutraliza el `p + p` de base.css. */
+.footer__note p + p { margin-top: 0; }
+
+@media (min-width: 720px) {
+  .footer__grid {
+    grid-template-columns: 1.4fr 1fr 1.2fr;
+    gap: var(--sp-8);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. Boton flotante de WhatsApp
+   Bajo 900px es un circulo de 56px solo con el icono: el nombre accesible lo
+   aporta el aria-label del enlace, y .wa-fab__text se oculta con display:none.
+   Desde 900px se convierte en pildora con el texto visible.
+   El footer gana relleno inferior extra en movil para que el FAB no tape la
+   ultima linea del aviso legal.
+   -------------------------------------------------------------------------- */
+.wa-fab {
+  position: fixed;
+  right: var(--sp-5);
+  bottom: var(--sp-5);
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  width: 56px;
+  height: 56px;
+  background: var(--c-coral-500);
+  color: #FFFFFF;
+  border-radius: var(--r-pill);
+  box-shadow: 0 6px 20px rgba(11, 42, 58, 0.22);
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.wa-fab:hover {
+  background: var(--c-coral-600);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.wa-fab__text { display: none; }
+
+@media (max-width: 47.99em) {
+  .site-footer { padding-bottom: calc(var(--sp-8) + 4rem); }
+}
+
+@media (min-width: 900px) {
+  .wa-fab {
+    right: var(--sp-6);
+    bottom: var(--sp-6);
+    width: auto;
+    height: auto;
+    padding: var(--sp-4) var(--sp-6);
+    font-family: var(--font-display);
+    font-size: var(--fs-300);
+    font-weight: 600;
+  }
+
+  .wa-fab__text { display: inline; }
+}
