@@ -59,8 +59,127 @@
   </div>
 </header>
 <main id="main">
-  <h1>Contacto y agendamiento</h1>
-  <p>Contenido pendiente.</p>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Contacto</p>
+      <h1>Contacto y cobertura en Calama</h1>
+      <p class="lede">La forma más rápida de agendar es WhatsApp. Atendemos todos los días de 8:00 a 21:00, siempre con hora acordada previamente.</p>
+    </div>
+  </section>
+
+  <section class="section" id="agendar">
+    <div class="container contact-grid">
+
+      <div class="contact-card">
+        <h2>Escríbenos por WhatsApp</h2>
+        <p>Cuéntanos qué necesitas y envíanos una foto de tu receta. Revisamos que esté vigente, te confirmamos el precio final y acordamos la hora de llegada.</p>
+        <p class="form-actions">
+          <a class="btn btn--primary btn--block" href="https://wa.me/56978833741?text=Hola%20Sanvi%2C%20quiero%20agendar%20una%20atenci%C3%B3n%20de%20enfermer%C3%ADa%20a%20domicilio%20en%20Calama.">Abrir WhatsApp</a>
+          <a class="btn btn--ghost btn--block" href="tel:+56978833741">Llamar al +56 9 7883 3741</a>
+        </p>
+
+        <h2 id="horario" style="margin-top:2.5rem">Horario de atención</h2>
+        <table class="hours-table">
+          <caption class="sr-only">Horario de atención de Sanvi en Calama</caption>
+          <tbody>
+            <tr><th scope="row">Lunes</th><td>8:00 a 21:00</td></tr>
+            <tr><th scope="row">Martes</th><td>8:00 a 21:00</td></tr>
+            <tr><th scope="row">Miércoles</th><td>8:00 a 21:00</td></tr>
+            <tr><th scope="row">Jueves</th><td>8:00 a 21:00</td></tr>
+            <tr><th scope="row">Viernes</th><td>8:00 a 21:00</td></tr>
+            <tr><th scope="row">Sábado</th><td>8:00 a 21:00</td></tr>
+            <tr><th scope="row">Domingo</th><td>8:00 a 21:00</td></tr>
+          </tbody>
+        </table>
+        <p class="field__hint" style="margin-top:1rem">Atendemos exclusivamente con hora agendada. No realizamos visitas sin cita previa.</p>
+      </div>
+
+      <div class="contact-card" id="formulario">
+        <h2>O déjanos los datos aquí</h2>
+        <p>Completa el formulario y se abrirá WhatsApp con tu mensaje ya escrito. No guardamos ningún dato en este sitio: la conversación ocurre directamente en tu WhatsApp.</p>
+        <form data-wa-form class="stack" style="margin-top:1.5rem" novalidate="false">
+          <div class="field">
+            <label class="field__label" for="f-nombre">Tu nombre</label>
+            <input class="field__control" type="text" id="f-nombre" name="nombre" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-servicio">Servicio que necesitas</label>
+            <select class="field__control" id="f-servicio" name="servicio" required>
+              <option value="Inyección intramuscular ($10.000)">Inyección intramuscular · $10.000</option>
+              <option value="Inyección intravenosa ($17.000)">Inyección intravenosa · $17.000</option>
+              <option value="Curación simple ($15.000)">Curación simple · $15.000</option>
+              <option value="Curación compleja ($33.000)">Curación compleja · $33.000</option>
+              <option value="No estoy seguro, necesito orientación">No estoy seguro, necesito orientación</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-sector">Sector de Calama</label>
+            <input class="field__control" type="text" id="f-sector" name="sector" placeholder="Centro, Villa Ayquina, Kamac Mayu…" required>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-horario">Día y hora que prefieres</label>
+            <input class="field__control" type="text" id="f-horario" name="horario" placeholder="Mañana a las 10:00, por ejemplo" required>
+            <span class="field__hint">Atendemos entre las 8:00 y las 21:00, todos los días.</span>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-mensaje">Algo más que debamos saber (opcional)</label>
+            <textarea class="field__control" id="f-mensaje" name="mensaje" rows="4"></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn--primary btn--block" type="submit">Enviar por WhatsApp</button>
+          </div>
+        </form>
+        <noscript>
+          <p class="callout" style="margin-top:1.5rem">Este formulario necesita JavaScript para abrir WhatsApp con tu mensaje. Escríbenos directamente al <a href="https://wa.me/56978833741">+56 9 7883 3741</a> o llámanos al <a href="tel:+56978833741">+56 9 7883 3741</a>.</p>
+        </noscript>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section--tint" id="cobertura">
+    <div class="container split">
+      <div class="stack">
+        <h2>Dónde atendemos</h2>
+        <p>Atendemos dentro del radio urbano de Calama, Región de Antofagasta, Chile. Llegamos a todos los sectores de la ciudad, incluidos el centro, Villa Ayquina y Kamac Mayu.</p>
+        <p>No atendemos fuera de Calama: quedan fuera Chuquicamata, Chiu Chiu, San Pedro de Atacama y las demás localidades de la provincia de El Loa.</p>
+        <ul class="coverage__list">
+          <li>Centro de Calama</li>
+          <li>Villa Ayquina</li>
+          <li>Kamac Mayu</li>
+          <li>Resto del radio urbano</li>
+        </ul>
+        <p><a href="https://www.google.com/maps/place/Calama,+Antofagasta,+Chile" target="_blank" rel="noopener">Ver Calama en Google Maps</a></p>
+      </div>
+      <div class="coverage__media">
+        <img src="assets/img/cobertura-calama.svg" width="420" height="300" alt="Mapa estilizado del radio urbano de Calama, área de cobertura de Sanvi" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>Antes de escribirnos</h2>
+      </div>
+      <div class="faq">
+        <details class="faq__item" name="faq-contacto">
+          <summary>¿Cuánto se demoran en responder por WhatsApp?</summary>
+          <div><p>Respondemos dentro de nuestro horario de atención, entre las 8:00 y las 21:00. Los mensajes que llegan fuera de ese horario se responden a partir de las 8:00 del día siguiente.</p></div>
+        </details>
+        <details class="faq__item" name="faq-contacto">
+          <summary>¿Qué información necesitan para agendar?</summary>
+          <div><p>Necesitamos tres cosas: qué servicio requieres, una foto de tu receta médica vigente y tu dirección dentro de Calama. Con eso confirmamos el precio final y la hora de llegada.</p></div>
+        </details>
+        <details class="faq__item" name="faq-contacto">
+          <summary>¿Guardan mis datos en este sitio?</summary>
+          <div><p>No. Este sitio no tiene base de datos ni formulario que envíe información a un servidor: el formulario sólo arma un mensaje que se abre en tu propio WhatsApp. Los datos clínicos que compartas se quedan en esa conversación.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
 </main>
 <footer class="site-footer">
   <div class="container">
