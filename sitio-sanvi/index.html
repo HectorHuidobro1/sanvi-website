@@ -27,6 +27,166 @@
   <link rel="stylesheet" href="assets/css/pages.css">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalBusiness",
+      "@id": "https://www.sanvicalama.cl/#business",
+      "additionalType": ["https://schema.org/Nursing", "https://www.wikidata.org/wiki/Q1145306"],
+      "name": "Sanvi",
+      "alternateName": "Sanvi Enfermería a Domicilio Calama",
+      "description": "Servicio móvil de enfermería a domicilio en Calama: inyecciones intramusculares e intravenosas y curaciones simples y complejas, realizadas por técnicos en enfermería de nivel superior. Atención todos los días de 8:00 a 21:00, con hora agendada.",
+      "url": "https://www.sanvicalama.cl/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://www.sanvicalama.cl/#logo",
+        "url": "https://www.sanvicalama.cl/assets/img/logo-sanvi.png",
+        "width": 512,
+        "height": 512,
+        "caption": "Sanvi, enfermería a domicilio en Calama"
+      },
+      "image": "https://www.sanvicalama.cl/assets/img/og-sanvi.png",
+      "telephone": "+56978833741",
+      "priceRange": "$$",
+      "currenciesAccepted": "CLP",
+      "medicalSpecialty": "Nursing",
+      "isAcceptingNewPatients": true,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Calama",
+        "addressRegion": "Antofagasta",
+        "postalCode": "1390000",
+        "addressCountry": "CL"
+      },
+      "geo": {"@type": "GeoCoordinates", "latitude": -22.4667, "longitude": -68.9333},
+      "areaServed": {
+        "@type": "City",
+        "name": "Calama",
+        "sameAs": "https://www.wikidata.org/wiki/Q233264"
+      },
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {"@type": "GeoCoordinates", "latitude": -22.4667, "longitude": -68.9333},
+        "geoRadius": "12000"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "08:00",
+          "closes": "21:00"
+        }
+      ],
+      "availableLanguage": [{"@type": "Language", "name": "Spanish", "alternateName": "es"}],
+      "knowsAbout": [
+        "Inyección intramuscular a domicilio",
+        "Inyección intravenosa a domicilio",
+        "Curación de heridas simples",
+        "Curación de heridas complejas",
+        "Complejo vitamínico B",
+        "Anticonceptivo inyectable mensual",
+        "Enfermería a domicilio en Calama"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "telephone": "+56978833741",
+          "availableLanguage": "es",
+          "areaServed": "CL"
+        }
+      ],
+      "hasOfferCatalog": {"@id": "https://www.sanvicalama.cl/#catalogo"}
+    },
+    {
+      "@type": "OfferCatalog",
+      "@id": "https://www.sanvicalama.cl/#catalogo",
+      "name": "Servicios de enfermería a domicilio en Calama",
+      "itemListElement": [
+        {"@type": "Offer", "position": 1, "priceCurrency": "CLP", "price": "10000", "availability": "https://schema.org/InStock", "url": "https://www.sanvicalama.cl/servicios.html#inyeccion-intramuscular", "itemOffered": {"@id": "https://www.sanvicalama.cl/servicios.html#inyeccion-intramuscular-service"}},
+        {"@type": "Offer", "position": 2, "priceCurrency": "CLP", "price": "17000", "availability": "https://schema.org/InStock", "url": "https://www.sanvicalama.cl/servicios.html#inyeccion-intravenosa", "itemOffered": {"@id": "https://www.sanvicalama.cl/servicios.html#inyeccion-intravenosa-service"}},
+        {"@type": "Offer", "position": 3, "priceCurrency": "CLP", "price": "15000", "availability": "https://schema.org/InStock", "url": "https://www.sanvicalama.cl/servicios.html#curacion-simple", "itemOffered": {"@id": "https://www.sanvicalama.cl/servicios.html#curacion-simple-service"}},
+        {"@type": "Offer", "position": 4, "priceCurrency": "CLP", "price": "33000", "availability": "https://schema.org/InStock", "url": "https://www.sanvicalama.cl/servicios.html#curacion-compleja", "itemOffered": {"@id": "https://www.sanvicalama.cl/servicios.html#curacion-compleja-service"}}
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.sanvicalama.cl/servicios.html#inyeccion-intramuscular-service",
+      "name": "Inyección intramuscular a domicilio en Calama",
+      "serviceType": "Administración de inyección intramuscular",
+      "description": "Aplicación a domicilio de medicamentos por vía intramuscular en Calama, incluidos multivitamínicos del complejo B y el anticonceptivo inyectable mensual. Requiere receta médica vigente. No incluye la venta del medicamento.",
+      "url": "https://www.sanvicalama.cl/servicios.html#inyeccion-intramuscular",
+      "provider": {"@id": "https://www.sanvicalama.cl/#business"},
+      "areaServed": {"@type": "City", "name": "Calama", "sameAs": "https://www.wikidata.org/wiki/Q233264"},
+      "offers": {"@type": "Offer", "priceCurrency": "CLP", "price": "10000", "availability": "https://schema.org/InStock", "url": "https://www.sanvicalama.cl/servicios.html#inyeccion-intramuscular", "eligibleRegion": {"@type": "City", "name": "Calama"}}
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.sanvicalama.cl/servicios.html#inyeccion-intravenosa-service",
+      "name": "Inyección intravenosa a domicilio en Calama",
+      "serviceType": "Administración de medicamento por vía intravenosa",
+      "description": "Administración a domicilio de medicamentos por vía endovenosa en Calama, con vigilancia durante y después del procedimiento. Requiere receta médica vigente que especifique la vía intravenosa. No incluye la venta del medicamento.",
+      "url": "https://www.sanvicalama.cl/servicios.html#inyeccion-intravenosa",
+      "provider": {"@id": "https://www.sanvicalama.cl/#business"},
+      "areaServed": {"@type": "City", "name": "Calama", "sameAs": "https://www.wikidata.org/wiki/Q233264"},
+      "offers": {"@type": "Offer", "priceCurrency": "CLP", "price": "17000", "availability": "https://schema.org/InStock", "url": "https://www.sanvicalama.cl/servicios.html#inyeccion-intravenosa", "eligibleRegion": {"@type": "City", "name": "Calama"}}
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.sanvicalama.cl/servicios.html#curacion-simple-service",
+      "name": "Curación simple de heridas a domicilio en Calama",
+      "serviceType": "Curación de herida simple",
+      "description": "Curación a domicilio de heridas limpias y de poca extensión en Calama: valoración, aseo con suero fisiológico, cobertura estéril, indicaciones de cuidado y retiro del material contaminado.",
+      "url": "https://www.sanvicalama.cl/servicios.html#curacion-simple",
+      "provider": {"@id": "https://www.sanvicalama.cl/#business"},
+      "areaServed": {"@type": "City", "name": "Calama", "sameAs": "https://www.wikidata.org/wiki/Q233264"},
+      "offers": {"@type": "Offer", "priceCurrency": "CLP", "price": "15000", "availability": "https://schema.org/InStock", "url": "https://www.sanvicalama.cl/servicios.html#curacion-simple", "eligibleRegion": {"@type": "City", "name": "Calama"}}
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.sanvicalama.cl/servicios.html#curacion-compleja-service",
+      "name": "Curación compleja de heridas a domicilio en Calama",
+      "serviceType": "Curación avanzada de herida compleja",
+      "description": "Curación a domicilio en Calama de heridas extensas, profundas o de cicatrización lenta, como úlceras por presión y pie diabético: valoración, aseo, manejo del tejido no viable cuando está indicado, cobertura avanzada y registro de la evolución. Requiere indicación médica.",
+      "url": "https://www.sanvicalama.cl/servicios.html#curacion-compleja",
+      "provider": {"@id": "https://www.sanvicalama.cl/#business"},
+      "areaServed": {"@type": "City", "name": "Calama", "sameAs": "https://www.wikidata.org/wiki/Q233264"},
+      "offers": {"@type": "Offer", "priceCurrency": "CLP", "price": "33000", "availability": "https://schema.org/InStock", "url": "https://www.sanvicalama.cl/servicios.html#curacion-compleja", "eligibleRegion": {"@type": "City", "name": "Calama"}}
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.sanvicalama.cl/#website",
+      "url": "https://www.sanvicalama.cl/",
+      "name": "Sanvi",
+      "inLanguage": "es-CL",
+      "publisher": {"@id": "https://www.sanvicalama.cl/#business"}
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.sanvicalama.cl/#webpage",
+      "url": "https://www.sanvicalama.cl/",
+      "name": "Inyecciones a domicilio en Calama | Sanvi Enfermería",
+      "description": "Inyecciones y curaciones a domicilio en Calama, aplicadas por técnicos en enfermería de nivel superior. Desde $10.000. Agenda por WhatsApp, de 8:00 a 21:00.",
+      "inLanguage": "es-CL",
+      "isPartOf": {"@id": "https://www.sanvicalama.cl/#website"},
+      "about": {"@id": "https://www.sanvicalama.cl/#business"},
+      "primaryImageOfPage": {"@id": "https://www.sanvicalama.cl/#logo"},
+      "datePublished": "2026-09-05",
+      "dateModified": "2026-09-05",
+      "breadcrumb": {"@id": "https://www.sanvicalama.cl/#breadcrumb"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.sanvicalama.cl/#breadcrumb",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.sanvicalama.cl/"}
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 <a class="skip-link" href="#main">Saltar al contenido</a>
