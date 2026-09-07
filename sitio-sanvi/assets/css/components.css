@@ -20,6 +20,8 @@
   --c-amber-050: #FFF6E6;  /* fondo de .callout--warn */
   --c-amber-500: #B26B00;  /* borde y titulo de .callout--warn (AA sobre --c-amber-050) */
   --c-coral-050: #FFEDE8;  /* fondo del icono de .checklist--no */
+  --c-teal-150: #C9F0EA;   /* tinte turquesa mas intenso que --c-teal-100, para diferenciar el icono circular de "curacion simple" del de "inyeccion intramuscular" */
+  --c-coral-100: #FFDBD1;  /* tinte coral mas intenso que --c-coral-050, para el icono circular de "curacion compleja" */
 }
 
 /* --------------------------------------------------------------------------
@@ -409,22 +411,38 @@
   box-shadow: 0 2px 4px rgba(11, 42, 58, 0.06), 0 14px 30px rgba(11, 42, 58, 0.10);
 }
 
+/* Insignia circular de icono de servicio. Por defecto usa un tinte turquesa
+   claro; cada servicio recibe un tinte distinto via modificador (todos son
+   tintes/sombras de los dos unicos colores de marca, turquesa y coral, nunca
+   un color nuevo) para que las 4 tarjetas de Home y las 4 cabeceras de
+   Servicios sean distinguibles de un vistazo sin salir de la paleta. */
 .card__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: var(--r-md);
-  background: var(--grad-teal);
-  color: #FFFFFF;
+  flex: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--c-teal-100);
+  color: var(--c-teal-900);
   font-family: var(--font-display);
-  font-size: var(--fs-300);
+  font-size: var(--fs-400);
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
-.card__icon svg { display: block; }
+.card__icon svg { display: block; width: 26px; height: 26px; }
+
+/* Inyeccion intramuscular: mismo tinte que el valor por defecto (se deja la
+   clase explicita en el HTML por claridad y para no depender del orden). */
+.card__icon--im { background: var(--c-teal-100); color: var(--c-teal-900); }
+/* Inyeccion intravenosa: tinte coral claro. */
+.card__icon--iv { background: var(--c-coral-050); color: var(--c-coral-600); }
+/* Curacion simple: tinte turquesa mas intenso que el de intramuscular. */
+.card__icon--cs { background: var(--c-teal-150); color: var(--c-teal-900); }
+/* Curacion compleja: tinte coral mas intenso que el de intravenosa. */
+.card__icon--cc { background: var(--c-coral-100); color: var(--c-coral-600); }
 
 .card__title { font-size: var(--fs-600); }
 
@@ -939,4 +957,48 @@ select.field__control {
   }
 
   .wa-fab__text { display: inline; }
+}
+
+/* --------------------------------------------------------------------------
+   14. Formas decorativas de fondo
+   Dos manchas circulares, borrosas y de baja opacidad (turquesa y coral,
+   siempre tintes de la paleta de marca) para romper el blanco plano de una
+   seccion sin competir con el texto. Se pintan con pseudo-elementos, sin
+   marcado extra. `isolation:isolate` crea un contexto de apilamiento propio,
+   asi el z-index negativo de las manchas queda detras del contenido normal
+   de la seccion sin necesidad de tocar el z-index de ese contenido.
+   Uso puntual (1-2 secciones por pagina como mucho): el hero de Home y la
+   grilla de servicios de Home. Son estaticas: no requieren
+   prefers-reduced-motion porque no animan nada.
+   -------------------------------------------------------------------------- */
+.bg-blobs {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.bg-blobs::before,
+.bg-blobs::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.bg-blobs::before {
+  top: -140px;
+  right: -110px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.32) 0%, rgba(45, 212, 191, 0) 70%);
+}
+
+.bg-blobs::after {
+  bottom: -120px;
+  left: -100px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(255, 107, 87, 0.16) 0%, rgba(255, 107, 87, 0) 70%);
 }

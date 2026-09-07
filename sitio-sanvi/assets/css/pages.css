@@ -19,16 +19,83 @@
 .hero__price span { color: var(--c-muted); font-size: var(--fs-400); }
 .hero__actions { display: grid; gap: var(--sp-3); }
 .hero__media { order: -1; }
-.hero__media img { width: 100%; max-width: 520px; margin-inline: auto; }
+
+/* Envoltorio de la foto del hero: posiciona la tarjeta flotante de la
+   Tarea 5 respecto a la imagen, no respecto a toda la columna. */
+.hero__photo-wrap { position: relative; max-width: 480px; margin-inline: auto; }
+.hero__photo-wrap img {
+  width: 100%;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Momento asimetrico: una tarjeta de confianza "rompe la rejilla" superpuesta
+   al borde inferior de la foto del hero. El desplazamiento es solo vertical
+   (bottom negativo) y el inset horizontal siempre es positivo (var(--sp-5)),
+   asi nunca provoca scroll horizontal ni se sale del viewport en movil. */
+.hero__float-card {
+  position: absolute;
+  left: var(--sp-5);
+  bottom: -1.25rem;
+  z-index: 1;
+  display: grid;
+  gap: 1px;
+  max-width: 12rem;
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-md);
+  box-shadow: 0 10px 24px rgba(11, 42, 58, 0.16);
+}
+
+.hero__float-card strong {
+  font-family: var(--font-display);
+  font-size: var(--fs-600);
+  font-weight: 700;
+  color: var(--c-teal-900);
+}
+
+.hero__float-card span { font-size: var(--fs-200); color: var(--c-muted); }
+
 @media (min-width: 640px) { .hero__actions { grid-auto-flow: column; justify-content: start; } }
 @media (min-width: 900px) {
   .hero__grid { grid-template-columns: 1.05fr .95fr; gap: var(--sp-9); }
   .hero__media { order: 0; }
+  .hero__float-card { left: -1.25rem; bottom: -1.5rem; max-width: 13rem; padding: var(--sp-4) var(--sp-5); }
 }
 
 /* ---------- Hero de paginas internas ---------- */
 .page-hero { padding-block: var(--sp-8) var(--sp-7); background: var(--grad-soft); }
 .page-hero h1 { margin-bottom: var(--sp-4); }
+
+/* Nosotros: foto junto al titulo, a dos columnas desde tablet (misma familia
+   visual que el hero de Home, en una version mas sobria sin CTA). */
+.page-hero__grid { display: grid; gap: var(--sp-7); align-items: center; }
+.page-hero__media img {
+  width: 100%;
+  max-width: 26rem;
+  margin-inline: auto;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+@media (min-width: 900px) {
+  .page-hero__grid { grid-template-columns: 1.1fr .9fr; gap: var(--sp-8); }
+}
+
+/* Servicios: la foto va como una franja horizontal ancha bajo el texto y los
+   enlaces de anclaje, no a dos columnas, para que esta pagina tenga una
+   identidad visual propia y distinta a la del hero de Home. */
+.page-hero__banner {
+  margin-top: var(--sp-7);
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+.page-hero__banner img {
+  width: 100%;
+  height: clamp(180px, 32vw, 340px);
+  object-fit: cover;
+}
 
 /* ---------- Rejilla de tarjetas ---------- */
 .cards-grid { display: grid; gap: var(--sp-5); }
