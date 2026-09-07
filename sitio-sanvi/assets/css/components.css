@@ -681,6 +681,56 @@
 }
 
 /* --------------------------------------------------------------------------
+   8.1 Chips de resumen + detalle expandible
+   Patron de "resumen visual + detalle completo": antes de cada .checklist
+   larga (4 o mas items en frases completas), una fila de chips cortos
+   (2-4 palabras) da el vistazo rapido; la frase completa original no se
+   toca, solo se traslada dentro de un <details class="detail-expand"> que
+   reutiliza el mismo <ul class="checklist"> de siempre. Los iconos del chip
+   son los mismos trazos de check/x que .checklist, solo que en miniatura y
+   coloreados via currentColor para heredar el tono de cada variante.
+   -------------------------------------------------------------------------- */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-5);
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  font-size: var(--fs-300);
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.chip__icon { flex: none; width: 13px; height: 13px; }
+
+.chip--yes {
+  background: var(--c-teal-100);
+  border-color: var(--c-teal-150);
+  color: var(--c-teal-900);
+}
+
+.chip--yes .chip__icon { color: var(--c-teal-500); }
+
+.chip--no {
+  background: var(--c-coral-050);
+  border-color: var(--c-coral-100);
+  color: var(--c-ink);
+}
+
+.chip--no .chip__icon { color: var(--c-coral-600); }
+
+/* --------------------------------------------------------------------------
    9. Avisos
    -------------------------------------------------------------------------- */
 .callout {
@@ -762,6 +812,58 @@
 .faq__item > div {
   padding: 0 var(--sp-6) var(--sp-6);
   color: var(--c-muted);
+}
+
+/* --------------------------------------------------------------------------
+   10.1 Detalle expandible (chip-row + <details>)
+   Acompana a .chip-row: mismo mecanismo nativo <details>/<summary> que .faq,
+   sin JavaScript, pero con una presentacion mas discreta (sin tarjeta propia)
+   porque vive dentro de una seccion que ya tiene su propio fondo. Reutiliza
+   la flecha giratoria de .faq__item para que el gesto de abrir/cerrar sea
+   consistente en todo el sitio.
+   -------------------------------------------------------------------------- */
+.detail-expand {
+  margin-top: var(--sp-4);
+}
+
+.detail-expand summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+  list-style: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: var(--fs-300);
+  font-weight: 600;
+  color: var(--c-teal-900);
+}
+
+.detail-expand summary::-webkit-details-marker { display: none; }
+
+.detail-expand summary:hover { color: var(--c-teal-500); }
+
+.detail-expand summary::after {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 9px;
+  margin-top: -3px;
+  border-right: 2px solid var(--c-teal-500);
+  border-bottom: 2px solid var(--c-teal-500);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.detail-expand[open] summary::after {
+  margin-top: 3px;
+  transform: rotate(-135deg);
+}
+
+.detail-expand > .checklist {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-5);
+  border-top: 1px dashed var(--c-line);
 }
 
 /* --------------------------------------------------------------------------
