@@ -42,16 +42,14 @@ Los cuatro deben terminar sin errores.
 
 ## Estado del dominio (importante)
 
-`https://www.sanvicalama.cl` es un **dominio de trabajo, todavía no registrado**.
-Se usa como placeholder consistente en canonicals, `og:url`, sitemap, robots y
-JSON-LD para que todo el SEO técnico esté ya cableado el día que exista un
-dominio real. El sitio **no está desplegado** en ningún hosting todavía.
+`https://sanvi.cl` es el **dominio real, ya comprado**, usado de forma
+consistente en canonicals, `og:url`, sitemap, robots y JSON-LD.
 
-## Cambiar el dominio
+## Cambiar el dominio (si vuelve a cambiar en el futuro)
 
-Al comprar el dominio definitivo, ejecutar una sola vez desde la raíz del proyecto:
+Si en el futuro cambia el dominio definitivo, ejecutar una sola vez desde la raíz del proyecto:
 
-    grep -rl "www.sanvicalama.cl" sitio-sanvi/ | xargs sed -i 's|www\.sanvicalama\.cl|DOMINIO-NUEVO|g'
+    grep -rl "sanvi.cl" sitio-sanvi/ | xargs sed -i 's|https://sanvi\.cl|https://DOMINIO-NUEVO|g'
     python tools/check_site.py sitio-sanvi --content
     python tools/check_links.py sitio-sanvi
 
@@ -83,8 +81,8 @@ aplican.
 
 ## Pendientes post-lanzamiento (por orden de impacto)
 
-1. **Dominio real.** Registrar `sanvicalama.cl` (u otro dominio definitivo) y
-   ejecutar el procedimiento de "Cambiar el dominio" de arriba.
+1. ~~**Dominio real.**~~ Ya comprado: `sanvi.cl`. Si algún día cambia, seguir el
+   procedimiento de "Cambiar el dominio" de arriba.
 2. **Google Business Profile.** Crear y verificar la ficha de Sanvi en Calama. Después:
    añadir al nodo `#business` del JSON-LD de las 4 páginas
    `"sameAs": ["https://www.google.com/maps/place/?q=place_id:PLACE_ID_REAL"]` y
@@ -110,5 +108,4 @@ aplican.
    atiende el negocio, en index.html y contacto.html.
 
 Ninguno de estos puntos bloquea el despliegue inicial: el sitio funciona y valida
-en verde con el dominio placeholder, pero no debe presentarse como "en vivo" ni
-promocionarse públicamente hasta cubrir al menos el punto 1.
+en verde con el dominio real (`sanvi.cl`) ya cableado.

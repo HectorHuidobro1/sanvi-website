@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.sanvicalama.cl/sitemap.xml
+Sitemap: https://sanvi.cl/sitemap.xml

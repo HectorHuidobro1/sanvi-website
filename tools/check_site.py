@@ -20,7 +20,7 @@ import os
 import re
 import sys
 
-SITE = "https://www.sanvicalama.cl"
+SITE = "https://sanvi.cl"
 
 PAGES = ["index.html", "servicios.html", "nosotros.html", "contacto.html"]
 

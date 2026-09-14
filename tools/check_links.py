@@ -16,7 +16,7 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 
-SITE = "https://www.sanvicalama.cl"
+SITE = "https://sanvi.cl"
 
 PAGES = ["index.html", "servicios.html", "nosotros.html", "contacto.html"]
 
