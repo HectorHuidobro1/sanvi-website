@@ -4,7 +4,10 @@
 # por eso este archivo vive aqui y no dentro de sitio-sanvi/.
 [build]
   base = "sitio-sanvi"
-  publish = "sitio-sanvi"
+  # Cuando se define `base`, Netlify resuelve `publish` relativo a esa carpeta,
+  # no a la raiz del repo. "sitio-sanvi" aqui apuntaba a "sitio-sanvi/sitio-sanvi"
+  # (no existe) y el deploy fallaba. "." significa "la propia carpeta base".
+  publish = "."
 
 # Las URLs del sitio son .html reales. Desactivar pretty_urls evita que Netlify
 # redirija /servicios.html a /servicios y rompa los canonicals y el sitemap.
