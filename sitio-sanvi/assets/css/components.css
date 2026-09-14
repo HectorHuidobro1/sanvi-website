@@ -475,6 +475,45 @@
 }
 
 /* --------------------------------------------------------------------------
+   5.1 Tarjeta de navegacion interna (cluster nav)
+   Aviso de transicion insertado en medio del contenido de una pagina, para
+   enlazar a otra pagina sin repetir el peso visual de .cta-band (fondo en
+   degradado, tipografia grande) ni de la rejilla de .card (icono arriba,
+   varias tarjetas). Reutiliza el fondo/borde/sombra/radio de .card, el
+   circulo de .card__icon y el boton --ghost/--sm ya existentes: en fila
+   desde 640px, apilada en movil. Uso puntual (1 por pagina, en un punto de
+   transicion de contenido) para no competir con la CTA principal de cierre.
+   -------------------------------------------------------------------------- */
+.nav-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-5);
+  padding: var(--sp-6);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-cue__icon { flex: none; }
+
+.nav-cue__body { display: grid; gap: var(--sp-2); flex: 1; }
+
+.nav-cue__body h3 { font-size: var(--fs-600); }
+
+.nav-cue__body p { margin: 0; color: var(--c-muted); font-size: var(--fs-300); }
+
+.nav-cue__action { flex: none; }
+
+@media (min-width: 640px) {
+  .nav-cue {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
    6. Tabla de precios
    Tabla real a partir de 48em; tarjetas apiladas por debajo, usando el
    data-label de cada <td> como etiqueta via ::before.
