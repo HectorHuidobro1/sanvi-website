@@ -14,6 +14,16 @@
 [build.processing.html]
   pretty_urls = false
 
+# El subdominio por defecto de Netlify (*.netlify.app) sirve una copia completa
+# e indexable del sitio si no se redirige explicitamente. Forzamos un 301 hacia
+# el dominio real preservando la ruta, para evitar contenido duplicado a nivel
+# de host durante la ventana critica de indexacion inicial.
+[[redirects]]
+  from = "https://transcendent-elf-3f4e94.netlify.app/*"
+  to = "https://sanvi.cl/:splat"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
