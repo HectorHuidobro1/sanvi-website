@@ -101,6 +101,7 @@
 .cards-grid { display: grid; gap: var(--sp-5); }
 @media (min-width: 640px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1200px) { .cards-grid--4 { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 900px) { .cards-grid--5 { grid-template-columns: repeat(3, 1fr); } }
 
 /* ---------- Bloque partido ---------- */
 .split { display: grid; gap: var(--sp-7); align-items: start; }

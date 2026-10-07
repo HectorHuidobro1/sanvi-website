@@ -18,13 +18,28 @@ import xml.etree.ElementTree as ET
 
 SITE = "https://sanvi.cl"
 
-PAGES = ["index.html", "servicios.html", "nosotros.html", "contacto.html"]
+PAGES = [
+    "index.html",
+    "servicios.html",
+    "nosotros.html",
+    "contacto.html",
+    "inyeccion-intramuscular.html",
+    "inyeccion-anticonceptiva.html",
+    "inyeccion-intravenosa.html",
+    "curacion-simple.html",
+    "curacion-compleja.html",
+]
 
 CANONICAL = {
     "index.html": SITE + "/",
     "servicios.html": SITE + "/servicios.html",
     "nosotros.html": SITE + "/nosotros.html",
     "contacto.html": SITE + "/contacto.html",
+    "inyeccion-intramuscular.html": SITE + "/inyeccion-intramuscular.html",
+    "inyeccion-anticonceptiva.html": SITE + "/inyeccion-anticonceptiva.html",
+    "inyeccion-intravenosa.html": SITE + "/inyeccion-intravenosa.html",
+    "curacion-simple.html": SITE + "/curacion-simple.html",
+    "curacion-compleja.html": SITE + "/curacion-compleja.html",
 }
 
 EXTERNAL_PREFIXES = ("http://", "https://", "//", "mailto:", "tel:", "javascript:", "data:")

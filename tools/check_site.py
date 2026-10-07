@@ -22,27 +22,52 @@ import sys
 
 SITE = "https://sanvi.cl"
 
-PAGES = ["index.html", "servicios.html", "nosotros.html", "contacto.html"]
+PAGES = [
+    "index.html",
+    "servicios.html",
+    "nosotros.html",
+    "contacto.html",
+    "inyeccion-intramuscular.html",
+    "inyeccion-anticonceptiva.html",
+    "inyeccion-intravenosa.html",
+    "curacion-simple.html",
+    "curacion-compleja.html",
+]
 
 CANONICAL = {
     "index.html": SITE + "/",
     "servicios.html": SITE + "/servicios.html",
     "nosotros.html": SITE + "/nosotros.html",
     "contacto.html": SITE + "/contacto.html",
+    "inyeccion-intramuscular.html": SITE + "/inyeccion-intramuscular.html",
+    "inyeccion-anticonceptiva.html": SITE + "/inyeccion-anticonceptiva.html",
+    "inyeccion-intravenosa.html": SITE + "/inyeccion-intravenosa.html",
+    "curacion-simple.html": SITE + "/curacion-simple.html",
+    "curacion-compleja.html": SITE + "/curacion-compleja.html",
 }
 
 # Minimo de palabras visibles dentro de <main>, por pagina.
 #   index.html     = 700 -> valor duro del plan: la home debe superar en
 #                           volumen de contenido util al competidor (Draska
 #                           tiene ~250 palabras). No cambiar.
-#   servicios.html = 650 -> 4 servicios en profundidad, ~160 palabras c/u.
+#   servicios.html = 220 -> ahora es una pagina-indice: hero + 5 resumenes
+#                           cortos con link a su pagina dedicada + FAQ.
 #   nosotros.html  = 650 -> historia + bioseguridad + credenciales.
 #   contacto.html  = 350 -> pagina corta y transaccional a proposito.
+#   paginas de servicio dedicadas (5) -> cada una es su propio articulo:
+#                           que es, precio, duracion, requisitos, que no
+#                           incluye y CTA. Piso fijado bajo el conteo real
+#                           para dejar margen a ediciones menores futuras.
 MIN_WORDS = {
     "index.html": 700,
-    "servicios.html": 650,
+    "servicios.html": 220,
     "nosotros.html": 650,
     "contacto.html": 350,
+    "inyeccion-intramuscular.html": 300,
+    "inyeccion-anticonceptiva.html": 300,
+    "inyeccion-intravenosa.html": 300,
+    "curacion-simple.html": 300,
+    "curacion-compleja.html": 300,
 }
 
 # Rangos aceptables para title y meta description (en caracteres).
